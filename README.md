@@ -46,3 +46,9 @@ $$log loss = -\frac{1}{N}\sum_{i=1}^N\sum_{j=1}^My_{ij}\log(p_{ij}),$$
 <p align="center">
   <img src="adjmseloss2.png"><img src="adjmseloss2_contour_plot.png">
 </p>
+
+9. combine weighted zero-mean R-squared score ${\rm R}^{2}$ and AdjMSELoss2
+$$\text{Adj-}R^2=1 - \frac{\sum w_i\,\beta\,\dfrac{(\hat y_i-y_i)^2}{1 + \left[ \beta - \dfrac{\beta - 0.5}{1 + \exp\!\big(10000\,\hat y_i\,y_i\big)} \right]}}{\sum w_i y_i^2 + \varepsilon}$$
+<p align="center">
+  <img src="m1.png"><img src="m2.png">
+</p>
