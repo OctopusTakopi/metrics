@@ -52,3 +52,19 @@ $$\text{Adj-}R^2=1 - \frac{\sum w_i\,\beta\,\dfrac{(\hat y_i-y_i)^2}{1 + \left[ 
 <p align="center">
   <img src="m1.png"><img src="m2.png">
 </p>
+
+---
+10. Huber Loss
+$$L_{\delta}(y, \hat{y}) = \begin{cases} \frac{1}{2}(y - \hat{y})^2 & \text{for } |y - \hat{y}| \le \delta, \\ \delta (|y - \hat{y}| - \frac{1}{2}\delta) & \text{otherwise.} \end{cases}$$
+
+---
+11. QLIKE Loss
+$$QLIKE(y, \hat{y}) = \frac{y}{\hat{y}} - \ln\left(\frac{y}{\hat{y}}\right) - 1$$
+
+---
+12. Log-Loss
+$$LogLoss = -\frac{1}{N}\sum_{i=1}^N \left( y_i \log(p_i) + (1-y_i) \log(1-p_i) \right)$$
+
+---
+13. Heteroskedasticity-Adjusted MSE
+$$HMSE = \frac{1}{N} \sum_{i=1}^N \left( \frac{y_i}{\hat{y}_i} - 1 \right)^2$$
