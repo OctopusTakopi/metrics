@@ -73,7 +73,7 @@ $$HMSE = \frac{1}{N} \sum_{i=1}^N \left( \frac{y_i}{\hat{y}_i} - 1 \right)^2$$
 $$r_k = \frac{P_{t+k} - P_t}{P_t}$$
 $$\tau = \inf \{ k \in \{1, \dots, H\} : |r_k| \ge B \}$$
 $$R_H = \frac{P_{t+H} - P_t}{P_t}$$
-$$Y_t = 
+$$Y_H = 
 \begin{cases} 
 \text{sgn}(r_\tau) \cdot B & \text{if } \tau \le H \text{ and } |R_H| < B \\
 R_H & \text{otherwise}
