@@ -1,4 +1,4 @@
-"""Weighted R² functions."""
+"""Weighted R² functions and related losses."""
 
 import numpy as np
 import torch
@@ -75,7 +75,7 @@ class WeightedR2Loss(nn.Module):
             torch.Tensor: Computed weighted R² loss.
         """
         numerator = torch.sum(weights * (y_pred - y_true) ** 2)
-        denominator = torch.sum(weights * (y_true) ** 2) + 1e-38
+        denominator = torch.sum(weights * (y_true) ** 2) + self.epsilon
         loss = numerator / denominator
         return loss
 
@@ -87,7 +87,15 @@ class AdjMSELoss2(nn.Module):
         super(AdjMSELoss2, self).__init__()
                 
     def forward(self, outputs, labels):
-        outputs = torch.squeeze(outputs)
+        outputs = torch.reshape(outputs, (-1,))
+        labels = torch.reshape(labels, (-1,))
+
+        if outputs.shape != labels.shape:
+            raise ValueError(
+                f"outputs and labels must have the same flattened shape, "
+                f"got {outputs.shape} and {labels.shape}"
+            )
+
         beta = 2.5
         loss = (outputs - labels)**2
         adj_loss = beta - (beta - 0.5) / (1 + torch.exp(10000 * torch.mul(outputs, labels)))
